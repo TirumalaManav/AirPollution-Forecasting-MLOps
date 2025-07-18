@@ -3,45 +3,186 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Docker](https://img.shields.io/badge/Docker-Available-blue.svg)](https://www.docker.com/)
-[![MLOps](https://img.shields.io/badge/MLOps-Complete-green.svg)](https://github.com/PAPPULASANDEEPKUMAR/Air-Pollution-Forecasting-LSTM-MLOps)
+[![MLOps](https://img.shields.io/badge/MLOps-Complete-green.svg)](https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps)
 
 ## 📊 **Research Foundation**
 > **IEEE Publication**: "Multivariate Time Series Analysis and Batch Normalization for Air Quality Prediction in Long Short-Term Memory Networks"  
-> **DOI**: [10.1109/INOCON60754.2024.10511808](https://doi.org/10.1109/INOCON60754.2024.10511808)
+> **DOI**: [10.1109/INOCON60754.2024.10511808](https://doi.org/10.1109/INOCON60754.2024.10511808)  
+> **Conference**: 2024 3rd International Conference for Innovation in Technology (INOCON)  
+> **Author**: Tirumala Manav
 
-*Production-ready air pollution forecasting system with 3-layer LSTM, complete MLOps pipeline, and Docker deployment.*
-
----
-
-## 🎯 **What You'll Build**
-
-- **LSTM Model**: 3-layer deep learning network with Batch Normalization
-- **MLOps Pipeline**: Complete CI/CD with testing and packaging
-- **Docker Deployment**: Containerized application ready for production
-- **Web Interface**: Real-time predictions with visualizations
-- **Professional Code**: Interview-ready repository structure
+*Production-ready air pollution forecasting system implementing IEEE research with complete MLOps pipeline and Docker deployment capabilities.*
 
 ---
 
-## 🚀 **Quick Start - 3 Ways to Run**
+## 🎯 **What This Project Delivers**
 
-### 1️⃣ **Docker (Recommended - 2 minutes)**
+- **🧠 Advanced LSTM Model**: 3-layer architecture with Batch Normalization
+- **📊 Multivariate Analysis**: 7 environmental features for accurate prediction
+- **🔄 Complete MLOps Pipeline**: CI/CD, testing, packaging, and deployment
+- **🐳 Docker Deployment**: Production-ready containerized application
+- **🌐 Web Interface**: Real-time predictions with interactive visualizations
+- **📈 Performance Monitoring**: RMSE tracking and model evaluation
 
+---
+
+## 🔬 **Research Background & Theory**
+
+### **Problem Statement**
+Air pollution has become a significant environmental concern affecting public health and air quality standards. Traditional forecasting methods often fail to capture the complex temporal dependencies and multivariate relationships in environmental data. This research addresses these limitations by implementing a sophisticated LSTM-based approach.
+
+### **Key Research Contributions**
+Based on the IEEE publication, this implementation provides:
+
+1. **Batch Normalization Integration**: Stabilizes LSTM training and accelerates convergence by normalizing layer inputs
+2. **Multivariate Time Series Analysis**: Incorporates seven environmental factors (pollution, dew, temp, pressure, wind speed, snow, rain) for comprehensive prediction
+3. **Long Short-Term Memory Networks**: Captures long-term dependencies crucial for accurate air quality forecasting
+4. **Production Implementation**: Transforms research into deployable system with MLOps best practices
+
+### **Technical Innovation**
+- **LSTM Architecture**: Addresses vanishing gradient problem in traditional RNNs
+- **Batch Normalization**: Reduces internal covariate shift, enabling faster training
+- **Multivariate Approach**: Considers interdependencies between environmental variables
+- **Regularization**: Dropout layers prevent overfitting in deep networks
+
+---
+
+## 🏗️ **System Architecture**
+
+### **📊 Model Architecture Flowchart**
+
+```
+                    ┌─────────────────────────────────────┐
+                    │         INPUT LAYER                 │
+                    │   7 Features: pollution, dew,      │
+                    │   temp, pressure, w_speed,         │
+                    │   snow, rain                        │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │    DATA PREPROCESSING               │
+                    │  • MinMaxScaler (0-1 range)        │
+                    │  • Reshape for LSTM input           │
+                    │  • Sequence preparation             │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │     LSTM LAYER 1                    │
+                    │  • 100 units                        │
+                    │  • return_sequences=True            │
+                    │  • Input shape: (timesteps, 7)     │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │     DROPOUT LAYER 1                 │
+                    │  • Rate: 0.3                        │
+                    │  • Regularization                   │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │   BATCH NORMALIZATION 1             │
+                    │  • Normalize layer inputs           │
+                    │  • Accelerate convergence           │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │     LSTM LAYER 2                    │
+                    │  • 100 units                        │
+                    │  • return_sequences=True            │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │     DROPOUT LAYER 2                 │
+                    │  • Rate: 0.3                        │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │   BATCH NORMALIZATION 2             │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │     LSTM LAYER 3                    │
+                    │  • 100 units                        │
+                    │  • return_sequences=False           │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │     DROPOUT LAYER 3                 │
+                    │  • Rate: 0.3                        │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │   BATCH NORMALIZATION 3             │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │      DENSE OUTPUT LAYER             │
+                    │  • 1 unit (pollution prediction)    │
+                    │  • Linear activation                │
+                    └─────────────┬───────────────────────┘
+                                  │
+                    ┌─────────────▼───────────────────────┐
+                    │     PREDICTION OUTPUT               │
+                    │  • Single pollution value           │
+                    │  • RMSE evaluation                  │
+                    └─────────────────────────────────────┘
+```
+
+### **🔄 MLOps Pipeline Architecture**
+
+```
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │                            MLOPS PIPELINE                                   │
+    └─────────────────────────────────────────────────────────────────────────────┘
+            │
+    ┌───────▼──────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+    │     DATA     │    │    MODEL     │    │   TESTING    │    │  DEPLOYMENT  │
+    │  INGESTION   │───▶│  TRAINING    │───▶│ & VALIDATION │───▶│ & SERVING    │
+    │              │    │              │    │              │    │              │
+    └──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
+            │                    │                    │                    │
+    ┌───────▼──────┐    ┌───────▼──────┐    ┌───────▼──────┐    ┌───────▼──────┐
+    │ pollution.csv│    │ LSTM Training│    │ pytest Suite│    │ Docker Image │
+    │ 7 features   │    │ 100 epochs   │    │ Unit Tests   │    │ Flask App    │
+    │ Preprocessing│    │ Batch: 2048  │    │ Integration  │    │ Port: 5000   │
+    │ MinMaxScaler │    │ Adam Optim.  │    │ Coverage     │    │ Health Check │
+    └──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
+            │                    │                    │                    │
+    ┌───────▼──────┐    ┌───────▼──────┐    ┌───────▼──────┐    ┌───────▼──────┐
+    │ Data Quality │    │ Model Saving │    │ Performance  │    │ Monitoring   │
+    │ Validation   │    │ Versioning   │    │ Metrics      │    │ & Logging    │
+    │ Schema Check │    │ Artifacts    │    │ RMSE Track   │    │ Alerts       │
+    └──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
+            │                    │                    │                    │
+            └────────────────────┼────────────────────┼────────────────────┘
+                                 │                    │
+                    ┌────────────▼────────────────────▼───────────┐
+                    │         GITHUB ACTIONS CI/CD              │
+                    │  • Automated Testing                      │
+                    │  • Docker Build & Push                    │
+                    │  • Model Validation                       │
+                    │  • Deployment Automation                  │
+                    └───────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 **Quick Start Guide**
+
+### **🐳 Docker Deployment (Recommended)**
 ```bash
 # Clone repository
-git clone https://github.com/PAPPULASANDEEPKUMAR/Air-Pollution-Forecasting-LSTM-MLOps.git
-cd Air-Pollution-Forecasting-LSTM-MLOps
+git clone https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps.git
+cd AirPollution-Forecasting-MLOps
 
 # Build and run
 docker build -t air-pollution-forecasting .
 docker run -p 5000:5000 air-pollution-forecasting
 
-# Open browser
-http://localhost:5000
+# Access: http://localhost:5000
 ```
 
-### 2️⃣ **Local Development (5 minutes)**
-
+### **💻 Local Development**
 ```bash
 # Setup environment
 python -m venv venv
@@ -50,421 +191,233 @@ pip install -r requirements.txt
 
 # Run application
 python docker_train.py
-
-# Access at http://localhost:5000
 ```
 
-### 3️⃣ **MLOps Package (1 minute)**
-
+### **📦 MLOps Package**
 ```bash
+# Install package
 pip install prediction-model
-```
 
-```python
+# Use in Python
 from prediction_model.predict import make_prediction
-result = make_prediction(input_data)
 ```
 
 ---
 
-## 🏗️ **Project Structure - What Goes Where**
+## 🏗️ **Complete Project Structure**
 
 ```
-Air-Pollution-Forecasting-LSTM-MLOps/
-├── 📄 docker_train.py              # Main application (run this)
-├── 📄 Dockerfile                   # Docker configuration
-├── 📄 requirements.txt             # Python dependencies
-├── 📄 README.md                    # This file
-├── 📄 LICENSE                      # MIT License
-├── 📄 .gitignore                   # Git ignore rules
+AirPollution-Forecasting-MLOps/
+├── 📄 README.md                                    # Project documentation
+├── 📄 LICENSE                                      # MIT License
+├── 📄 .gitignore                                   # Git ignore rules
+├── 📄 docker_train.py                             # Main application file
+├── 📄 Dockerfile                                  # Docker configuration
+├── 📄 requirements.txt                            # Python dependencies
+├── 📄 docker-compose.yml                          # Development environment
+├── 📄 setup.py                                    # Package installation
+├── 📄 MANIFEST.in                                 # Package manifest
+├── 📄 .dockerignore                               # Docker ignore rules
+├── 📁 .github/
+│   └── 📁 workflows/
+│       └── 📄 main.yaml                           # CI/CD pipeline
 ├── 📁 data/
-│   └── 📄 pollution.csv            # Dataset (7 features)
+│   ├── 📄 pollution.csv                           # Training dataset
+│   └── 📄 README.md                               # Data documentation
 ├── 📁 templates/
-│   └── 📄 index.html               # Web interface
+│   ├── 📄 index.html                              # Web interface
+│   └── 📄 base.html                               # Base template
+├── 📁 static/
+│   ├── 📁 css/
+│   │   └── 📄 style.css                           # Styling
+│   ├── 📁 js/
+│   │   └── 📄 main.js                             # JavaScript
+│   └── 📁 images/
+│       └── 📄 logo.png                            # Assets
 ├── 📁 trained_models/
-│   └── 📄 pollution_model.h5       # Trained LSTM model
-├── 📁 .github/workflows/
-│   └── 📄 main.yaml                # CI/CD pipeline
-└── 📁 Air-Pollution-Forecasting/   # MLOps package
-    └── 📁 Packaging-ML-Model/
-        ├── 📁 prediction_model/    # Package source
-        ├── 📁 tests/               # Test suite
-        └── 📁 dist/                # Built packages
+│   ├── 📄 pollution_model.h5                      # Trained LSTM model
+│   └── 📄 model_metadata.json                     # Model information
+├── 📁 config/
+│   ├── 📄 __init__.py
+│   ├── 📄 config.py                               # Configuration settings
+│   └── 📄 logging.conf                            # Logging configuration
+├── 📁 src/
+│   ├── 📄 __init__.py
+│   ├── 📄 model_training.py                       # Training pipeline
+│   ├── 📄 data_preprocessing.py                   # Data processing
+│   ├── 📄 model_evaluation.py                     # Model evaluation
+│   └── 📄 utils.py                                # Utility functions
+├── 📁 Air-Pollution-Forecasting/
+│   └── 📁 Packaging-ML-Model/
+│       ├── 📄 setup.py                            # Package setup
+│       ├── 📄 pyproject.toml                      # Build configuration
+│       ├── 📄 README.md                           # Package documentation
+│       ├── 📁 prediction_model/
+│       │   ├── 📄 __init__.py
+│       │   ├── 📄 VERSION                         # Version file
+│       │   ├── 📄 pipeline.py                     # ML pipeline
+│       │   ├── 📄 predict.py                      # Prediction module
+│       │   ├── 📄 training_pipeline.py            # Training pipeline
+│       │   ├── 📄 graph.png                       # Model visualization
+│       │   ├── 📁 config/
+│       │   │   ├── 📄 __init__.py
+│       │   │   └── 📄 config.py                   # Package config
+│       │   ├── 📁 datasets/
+│       │   │   ├── 📄 __init__.py
+│       │   │   └── 📄 pollution.csv               # Package data
+│       │   ├── 📁 processing/
+│       │   │   ├── 📄 __init__.py
+│       │   │   ├── 📄 data_handling.py            # Data utilities
+│       │   │   ├── 📄 preprocessing.py            # Preprocessing
+│       │   │   └── 📄 reshape_transformer.py      # Data transformation
+│       │   └── 📁 trained_models/
+│       │       ├── 📄 __init__.py
+│       │       ├── 📄 pollution.pkl               # Serialized model
+│       │       └── 📄 pollution_model.h5          # Keras model
+│       ├── 📁 tests/
+│       │   ├── 📄 __init__.py
+│       │   ├── 📄 conftest.py                     # Test configuration
+│       │   ├── 📄 pytest.ini                      # pytest settings
+│       │   ├── 📄 test_prediction.py              # Prediction tests
+│       │   ├── 📄 test_data_handling.py           # Data tests
+│       │   ├── 📄 test_preprocessing.py           # Preprocessing tests
+│       │   └── 📄 prediction_vs_actual.png        # Test results
+│       ├── 📁 build/                              # Build artifacts
+│       ├── 📁 dist/                               # Distribution packages
+│       │   ├── 📄 prediction_model-1.0.0.tar.gz  # Source distribution
+│       │   └── 📄 prediction_model-1.0.0-py3-none-any.whl  # Wheel
+│       └── 📁 prediction_model.egg-info/          # Package metadata
+├── 📁 tests/
+│   ├── 📄 __init__.py
+│   ├── 📄 conftest.py                             # Test configuration
+│   ├── 📄 test_main.py                            # Main app tests
+│   ├── 📄 test_model.py                           # Model tests
+│   ├── 📄 test_api.py                             # API tests
+│   └── 📄 test_docker.py                          # Docker tests
+├── 📁 docs/
+│   ├── 📄 API.md                                  # API documentation
+│   ├── 📄 DEPLOYMENT.md                           # Deployment guide
+│   ├── 📄 DEVELOPMENT.md                          # Development guide
+│   └── 📄 ARCHITECTURE.md                         # Architecture details
+├── 📁 scripts/
+│   ├── 📄 train_model.py                          # Training script
+│   ├── 📄 evaluate_model.py                       # Evaluation script
+│   ├── 📄 deploy.py                               # Deployment script
+│   └── 📄 run_tests.py                            # Test runner
+└── 📁 logs/
+    ├── 📄 app.log                                 # Application logs
+    ├── 📄 training.log                            # Training logs
+    └── 📄 error.log                               # Error logs
 ```
 
 ---
 
-## 💻 **Step-by-Step Implementation**
+## 🎯 **Technical Specifications**
 
-### **Step 1: Setup Your Environment**
+### **Model Architecture**
+- **Type**: 3-Layer LSTM with Batch Normalization
+- **Input Features**: 7 environmental variables
+- **LSTM Units**: 100 per layer
+- **Dropout Rate**: 0.3 for regularization
+- **Optimizer**: Adam with MSE loss
+- **Training**: 100 epochs, batch size 2048
 
+### **Performance Metrics**
+- **RMSE**: Root Mean Square Error tracking
+- **Training/Validation Loss**: Convergence monitoring
+- **Prediction Accuracy**: Visual comparison plots
+- **Model Evaluation**: Real-time performance assessment
+
+### **MLOps Components**
+- **CI/CD Pipeline**: GitHub Actions automation
+- **Testing**: Comprehensive pytest suite
+- **Packaging**: Professional Python package
+- **Monitoring**: Performance tracking and logging
+- **Deployment**: Docker containerization
+
+---
+
+## 🔧 **Environment Setup**
+
+### **Prerequisites**
+- Python 3.8+
+- Docker & Docker Compose
+- Git
+
+### **Installation Steps**
 ```bash
-# Create project directory
-mkdir Air-Pollution-Forecasting-LSTM-MLOps
-cd Air-Pollution-Forecasting-LSTM-MLOps
+# Clone repository
+git clone https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps.git
 
-# Create virtual environment
+# Setup environment
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate
 
 # Install dependencies
-pip install tensorflow keras scikit-learn pandas numpy matplotlib flask
-```
-
-### **Step 2: Create Main Application**
-
-```python
-# docker_train.py - Your main file
-import pandas as pd
-import numpy as np
-from flask import Flask, request, render_template
-from keras.models import Sequential, load_model
-from keras.layers import Dense, Dropout, LSTM, BatchNormalization
-from sklearn.preprocessing import MinMaxScaler
-
-# Your LSTM model architecture
-def build_model(input_shape):
-    model = Sequential()
-    model.add(LSTM(units=100, return_sequences=True, input_shape=input_shape))
-    model.add(Dropout(0.3))
-    model.add(BatchNormalization())
-    
-    model.add(LSTM(units=100, return_sequences=True))
-    model.add(Dropout(0.3))
-    model.add(BatchNormalization())
-    
-    model.add(LSTM(units=100))
-    model.add(Dropout(0.3))
-    model.add(BatchNormalization())
-    
-    model.add(Dense(units=1))
-    model.compile(optimizer='adam', loss='mean_squared_error')
-    return model
-
-# Run: python docker_train.py
-```
-
-### **Step 3: Create Docker Configuration**
-
-```dockerfile
-# Dockerfile
-FROM python:3.8-slim
-
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-EXPOSE 5000
-
-CMD ["python", "docker_train.py"]
-```
-
-### **Step 4: Set Up MLOps Pipeline**
-
-```yaml
-# .github/workflows/main.yaml
-name: CI/CD Pipeline
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-    - name: Run tests
-      run: pytest tests/ -v
-    - name: Build Docker image
-      run: docker build -t air-pollution-forecasting .
-```
-
-### **Step 5: Create Package Structure**
-
-```bash
-# Create MLOps package structure
-mkdir -p Air-Pollution-Forecasting/Packaging-ML-Model/prediction_model
-mkdir -p Air-Pollution-Forecasting/Packaging-ML-Model/tests
-mkdir -p Air-Pollution-Forecasting/Packaging-ML-Model/prediction_model/config
-mkdir -p Air-Pollution-Forecasting/Packaging-ML-Model/prediction_model/processing
-mkdir -p Air-Pollution-Forecasting/Packaging-ML-Model/prediction_model/trained_models
+pip install -r requirements.txt
 ```
 
 ---
 
-## 🔧 **How to Customize for Your Project**
+## 🧪 **Testing & Validation**
 
-### **Change the Model Architecture**
+### **Test Categories**
+- **Unit Tests**: Individual component testing
+- **Integration Tests**: End-to-end pipeline validation
+- **Performance Tests**: Model accuracy and speed
+- **Docker Tests**: Container deployment verification
 
-```python
-# In docker_train.py, modify build_model function
-def build_model(input_shape):
-    model = Sequential()
-    # Change LSTM units (default: 100)
-    model.add(LSTM(units=50, return_sequences=True, input_shape=input_shape))
-    # Change dropout rate (default: 0.3)
-    model.add(Dropout(0.2))
-    # Add/remove layers as needed
-    return model
-```
+### **Run Tests**
+```bash
+# Complete test suite
+pytest tests/ -v --cov=prediction_model
 
-### **Use Your Own Dataset**
-
-```python
-# Replace data/pollution.csv with your CSV file
-# Update FEATURES list in docker_train.py
-FEATURES = ['your_feature1', 'your_feature2', 'your_feature3']
-TARGET = 'your_target_variable'
-```
-
-### **Modify Training Parameters**
-
-```python
-# In docker_train.py, change these values
-BATCH_SIZE = 1024    # Default: 2048
-EPOCHS = 50          # Default: 100
-VALIDATION_SPLIT = 0.1  # Default: 0.2
+# Specific test categories
+pytest tests/test_model.py -v
+pytest tests/test_api.py -v
 ```
 
 ---
 
-## 🐳 **Docker Commands You'll Use**
+## 📤 **GitHub Deployment**
 
+### **Repository Setup**
 ```bash
-# Build image
-docker build -t air-pollution-forecasting .
-
-# Run container
-docker run -p 5000:5000 air-pollution-forecasting
-
-# Run in background
-docker run -d -p 5000:5000 --name pollution-app air-pollution-forecasting
-
-# Stop container
-docker stop pollution-app
-
-# Remove container
-docker rm pollution-app
-
-# View logs
-docker logs pollution-app
-
-# Access container shell
-docker exec -it pollution-app /bin/bash
-```
-
----
-
-## 🧪 **Testing Your Application**
-
-### **Test the Web Interface**
-
-```bash
-# Start application
-python docker_train.py
-
-# Open browser and go to:
-http://localhost:5000
-
-# Test with sample data:
-# pollution: 129.0, dew: -16.0, temp: -4.0
-# pressure: 1016.0, w_speed: 1.79, snow: 0.0, rain: 0.0
-```
-
-### **Test API Endpoint**
-
-```python
-import requests
-
-# Test prediction endpoint
-data = {
-    'pollution': 129.0,
-    'dew': -16.0,
-    'temp': -4.0,
-    'pressure': 1016.0,
-    'w_speed': 1.79,
-    'snow': 0.0,
-    'rain': 0.0
-}
-
-response = requests.post('http://localhost:5000/predict', data=data)
-print(response.text)
-```
-
-### **Run Unit Tests**
-
-```bash
-# Install pytest
-pip install pytest
-
-# Run tests
-pytest tests/ -v
-
-# Run with coverage
-pytest tests/ --cov=prediction_model
-```
-
----
-
-## 📤 **How to Push to GitHub**
-
-### **Step 1: Create Repository**
-
-```bash
-# On GitHub, create new repository:
-# Name: Air-Pollution-Forecasting-LSTM-MLOps
-# Description: IEEE Research Implementation with MLOps Pipeline
-# Public/Private: Your choice
-# Initialize: Don't initialize (you have local files)
-```
-
-### **Step 2: Initialize Git**
-
-```bash
-# In your project directory
+# Initialize repository
 git init
 git add .
 git commit -m "Initial commit: IEEE Air Pollution Forecasting System"
-```
 
-### **Step 3: Connect to GitHub**
-
-```bash
-# Add remote repository
-git remote add origin https://github.com/PAPPULASANDEEPKUMAR/Air-Pollution-Forecasting-LSTM-MLOps.git
-
-# Push to GitHub
+# Connect to GitHub
+git remote add origin https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps.git
 git branch -M main
 git push -u origin main
 ```
 
-### **Step 4: Verify Upload**
-
-```bash
-# Check your GitHub repository
-# All files should be visible
-# CI/CD pipeline should start automatically
-```
-
----
-
-## 🔍 **Troubleshooting Common Issues**
-
-### **Docker Issues**
-
-```bash
-# Port already in use
-docker run -p 5001:5000 air-pollution-forecasting
-
-# Out of memory
-docker run -m 4g -p 5000:5000 air-pollution-forecasting
-
-# Permission denied
-sudo docker run -p 5000:5000 air-pollution-forecasting
-```
-
-### **Python Issues**
-
-```bash
-# Module not found
-pip install -r requirements.txt
-
-# TensorFlow issues
-pip install tensorflow==2.12.0
-
-# Flask issues
-export FLASK_APP=docker_train.py
-```
-
-### **Git Issues**
-
-```bash
-# Authentication failed
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-
-# Large files
-git lfs track "*.h5"
-git add .gitattributes
-```
-
----
-
-## 🎯 **Model Performance Details**
-
-### **Architecture Overview**
-- **Input**: 7 features (pollution, dew, temp, pressure, w_speed, snow, rain)
-- **LSTM Layers**: 3 layers with 100 units each
-- **Regularization**: Dropout (0.3) + Batch Normalization
-- **Output**: Single pollution value prediction
-
-### **Training Configuration**
-- **Optimizer**: Adam
-- **Loss Function**: Mean Squared Error
-- **Batch Size**: 2048
-- **Epochs**: 100
-- **Validation Split**: 20%
-
-### **Performance Metrics**
-- **RMSE**: Calculated and displayed in real-time
-- **Training/Validation Loss**: Plotted automatically
-- **Prediction Accuracy**: Visual comparison graphs
-
----
-
-## 🔧 **Environment Configuration**
-
-### **Required Dependencies**
-
-```txt
-# Core requirements
-tensorflow==2.12.0
-keras==2.12.0
-scikit-learn==1.3.0
-pandas==2.0.3
-numpy==1.24.3
-matplotlib==3.7.2
-flask==2.3.3
-```
-
-### **Environment Variables**
-
-```bash
-# Optional configuration
-export FLASK_HOST=0.0.0.0
-export FLASK_PORT=5000
-export MODEL_NAME=pollution_model.h5
-export BATCH_SIZE=2048
-export EPOCHS=100
-```
+### **Automated CI/CD**
+- GitHub Actions workflow automatically triggers on push
+- Runs tests, builds Docker image, and validates deployment
+- Provides continuous integration and deployment capabilities
 
 ---
 
 ## 🏆 **IEEE Research Implementation**
 
-### **Published Paper Details**
+### **Research Paper Details**
 - **Title**: "Multivariate Time Series Analysis and Batch Normalization for Air Quality Prediction in Long Short-Term Memory Networks"
-- **Authors**: Tirumala Manav, et al.
+- **Author**: Tirumala Manav
 - **Conference**: 2024 3rd International Conference for Innovation in Technology (INOCON)
 - **DOI**: [10.1109/INOCON60754.2024.10511808](https://doi.org/10.1109/INOCON60754.2024.10511808)
 
-### **Key Research Contributions**
-- **Batch Normalization**: Improves LSTM training stability
-- **Multivariate Analysis**: Uses 7 environmental factors
-- **Production Implementation**: Complete MLOps pipeline
-- **Real-world Application**: Deployable air quality system
+### **Key Contributions**
+- Novel application of Batch Normalization in LSTM networks for air quality prediction
+- Comprehensive multivariate analysis using environmental factors
+- Production-ready implementation with MLOps best practices
+- Scalable architecture for real-world deployment
 
 ---
 
-## 🤝 **Contributing & Support**
+## 🤝 **Contributing**
 
 ### **How to Contribute**
 1. Fork the repository
@@ -473,17 +426,26 @@ export EPOCHS=100
 4. Push branch: `git push origin feature/new-feature`
 5. Create Pull Request
 
-### **Get Help**
-- 📋 **Issues**: [GitHub Issues](https://github.com/PAPPULASANDEEPKUMAR/Air-Pollution-Forecasting-LSTM-MLOps/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/PAPPULASANDEEPKUMAR/Air-Pollution-Forecasting-LSTM-MLOps/discussions)
+### **Development Guidelines**
+- Follow PEP 8 coding standards
+- Add comprehensive tests for new features
+- Update documentation accordingly
+- Maintain 90%+ test coverage
 
 ---
 
-## 📞 **Contact**
+## 📞 **Contact & Support**
 
+### **Author**
 **Tirumala Manav**
-- 🐙 GitHub: [@PAPPULASANDEEPKUMAR](https://github.com/PAPPULASANDEEPKUMAR)
+- 🐙 GitHub: [@TirumalaManav](https://github.com/TirumalaManav)
 - 📧 Email: Contact via GitHub Issues
+- 🔗 Repository: [AirPollution-Forecasting-MLOps](https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps)
+
+### **Support Channels**
+- 📋 **Issues**: [GitHub Issues](https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps/issues)
+- 📖 **Documentation**: [Project Wiki](https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps/wiki)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps/discussions)
 
 ---
 
@@ -493,14 +455,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## 🙏 **Acknowledgments**
+
+- IEEE INOCON 2024 for publishing the research
+- Open Source Community for tools and frameworks
+- Environmental Science Community for data insights
+- MLOps Community for best practices
+
+---
+
 <div align="center">
 
 ### 🌟 **Star this repository if you find it useful!** 🌟
 
-**Made with ❤️ by [Tirumala Manav](https://github.com/PAPPULASANDEEPKUMAR)**
+**Made with ❤️ by [Tirumala Manav](https://github.com/TirumalaManav)**
 
 </div>
 
 ---
 
-*Professional IEEE research implementation with complete MLOps pipeline - ready for technical interviews and production deployment.*
+*This project represents a complete implementation of IEEE research with professional MLOps practices, suitable for academic citations, technical interviews, and production deployment.*
