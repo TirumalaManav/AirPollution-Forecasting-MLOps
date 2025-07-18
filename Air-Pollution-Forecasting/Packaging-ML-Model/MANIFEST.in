@@ -1,0 +1,19 @@
+# Include all text files, markdown files, Python files, and PNG files
+include *.txt
+include *.md
+include *.py
+include *.png
+
+# Include all files in the prediction_model directory and its subdirectories
+recursive-include prediction_model *
+include prediction_model/datasets/*.csv
+include prediction_model/trained_models/*.h5
+include prediction_model/processing/*.py
+include prediction_model/VERSION 
+
+# Include all files in the tests directory
+include tests/*
+
+# Exclude __pycache__ directories and .pyc files
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

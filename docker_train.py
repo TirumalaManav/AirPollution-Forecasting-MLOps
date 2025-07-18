@@ -1,3 +1,26 @@
+"""
+Air Pollution Forecasting with Multivariate LSTM & MLOps Pipeline
+IEEE Research Implementation
+
+Title: "Multivariate Time Series Analysis and Batch Normalization for Air Quality Prediction in Long Short-Term Memory Networks"
+DOI: 10.1109/INOCON60754.2024.10511808
+Conference: 2024 3rd International Conference for Innovation in Technology (INOCON)
+
+Author: Tirumala Manav
+GitHub: https://github.com/TirumalaManav/AirPollution-Forecasting-MLOps
+Email: Contact via GitHub Issues
+Date: July 2024
+
+Description: [Add specific module description here]
+
+License: MIT License
+Copyright (c) 2024 Tirumala Manav
+
+This module implements [specific functionality] as part of the complete
+air pollution forecasting system with production-ready MLOps pipeline.
+"""
+
+
 #Importing Libraries
 import os
 import pandas as pd
@@ -33,23 +56,23 @@ app = Flask(__name__)
 # Model training function
 def build_model(input_shape):
     model = Sequential()
-    
+
     model.add(LSTM(units=100, return_sequences=True, input_shape=input_shape))
     model.add(Dropout(0.3))
     model.add(BatchNormalization())
-    
+
     model.add(LSTM(units=100, return_sequences=True))
     model.add(Dropout(0.3))
     model.add(BatchNormalization())
-    
+
     model.add(LSTM(units=100))
     model.add(Dropout(0.3))
     model.add(BatchNormalization())
-    
+
     model.add(Dense(units=1))
-    
+
     model.compile(optimizer='adam', loss='mean_squared_error')
-    
+
     return model
 
 # Load data
@@ -79,15 +102,15 @@ def train_and_serve():
         return
 
     X, y, scaler = preprocess_data(df, FEATURES, TARGET)
-    
+
     model = build_model((X.shape[1], X.shape[2]))  # Input shape (timesteps, features)
-    
+
     history = model.fit(X, y, epochs=100, batch_size=2048, verbose=1, validation_split=0.2)
-    
+
     model_path = os.path.join(SAVE_MODEL_PATH, MODEL_NAME)
     os.makedirs(SAVE_MODEL_PATH, exist_ok=True)
     model.save(model_path)
-    
+
     predictions = model.predict(X)
     plot_urls = plot_predictions_and_evaluate(y, predictions, history)
 
@@ -110,7 +133,7 @@ def plot_predictions_and_evaluate(actual_values, predicted_values, history):
     buf.seek(0)
     plt.close()
     prediction_plot_url = base64.b64encode(buf.getvalue()).decode('utf8')
-    
+
     # Loss Plot
     plt.figure(figsize=(10, 6))
     plt.plot(history.history['loss'], label='Training Loss')
@@ -125,7 +148,7 @@ def plot_predictions_and_evaluate(actual_values, predicted_values, history):
     buf.seek(0)
     plt.close()
     loss_plot_url = base64.b64encode(buf.getvalue()).decode('utf8')
-    
+
     # RMSE Plot (Accuracy Equivalent)
     rmse_per_epoch = [np.sqrt(mse) for mse in history.history['loss']]
     plt.figure(figsize=(10, 6))
@@ -140,15 +163,15 @@ def plot_predictions_and_evaluate(actual_values, predicted_values, history):
     buf.seek(0)
     plt.close()
     rmse_plot_url = base64.b64encode(buf.getvalue()).decode('utf8')
-    
+
     # Calculate and print final RMSE for the whole dataset
     mse = mean_squared_error(actual_values, predicted_values)
     rmse = np.sqrt(mse)
     print('Final RMSE:', rmse)
-    
-    return {'prediction_plot_url': prediction_plot_url, 
-            'loss_plot_url': loss_plot_url, 
-            'rmse_plot_url': rmse_plot_url, 
+
+    return {'prediction_plot_url': prediction_plot_url,
+            'loss_plot_url': loss_plot_url,
+            'rmse_plot_url': rmse_plot_url,
             'rmse': rmse}
 
 # Preprocess input for the web app
@@ -174,7 +197,7 @@ def predict():
         prediction = model.predict(processed_data)
         prediction_value = prediction[0][0]
 
-        return render_template('index.html', 
+        return render_template('index.html',
                                prediction_text=f'Predicted Pollution Level: {prediction_value:.2f}',
                                rmse_text=f'Final RMSE: {plot_urls["rmse"]:.2f}',
                                prediction_plot_url=plot_urls['prediction_plot_url'],
@@ -199,7 +222,7 @@ def serve_model(model_path, plot_urls):
 #     MODEL_PATH = model_path
 #     df = load_data(TRAIN_FILE)
 #     _, _, scaler = preprocess_data(df, FEATURES, TARGET)
-    
+
 #     # Modified to ensure proper Docker networking
 #     app.run(
 #         host='0.0.0.0',  # Binds to all interfaces
